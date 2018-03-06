@@ -1,6 +1,6 @@
 This tweak requires Materialize. Tested on 1.0.0-alpha
 Add after Materialize css
-<link type="text/css" rel="stylesheet" href="https://raw.github.com/barfittc/materialize-tweaks/master/sidenav-icon-colapse/sidenav-icon-colapse.min.css" media="screen,projection"/>
+`<link type="text/css" rel="stylesheet" href="https://raw.github.com/barfittc/materialize-tweaks/master/sidenav-icon-colapse/sidenav-icon-colapse.min.css" media="screen,projection"/>`
 
 This is a CSS only tweak.
 
