@@ -1,0 +1,90 @@
+main
+{
+    margin-left: 50px;
+    width: calc(100% - 50px);
+}
+
+.sidenav
+{
+    box-shadow: 
+        inset 0px 6px 3px -5px rgba(0,0,0,0.5), 
+        0px 0px 5px 0px rgba(0,0,0,0.75);
+
+    margin-top: 64px;
+    width: 50px;
+
+    position:absolute;
+    
+    overflow:hidden;
+    -webkit-transition:width .1s linear;
+    transition:width .1s linear;
+    -webkit-transform:translateZ(0) scale(1,1);
+    transform:translateZ(0) scale(1,1);
+
+    overflow-y:auto;
+}
+.sidenav:hover 
+{
+    width: 300px;
+    overflow:visible;
+    overflow-y:auto;
+}
+.sidenav li > a > i, 
+.sidenav li > a > [class^="mdi-"], 
+.sidenav li > a li > a > [class*="mdi-"], 
+.sidenav li > a > i.material-icons
+{
+    position: relative;
+    display: table-cell;
+    width: 50px;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size:20px;
+    margin: 0 0 0 0;
+}
+.sidenav li > a
+{
+    font-weight: bold;
+
+    position:relative;
+    display:table;
+    border-collapse:collapse;
+    border-spacing:0;
+    width: 100%;
+
+    transform:translateZ(0) scale(1,1);
+    transition:all .15s linear;
+}
+.sidenav li {
+    position:relative;
+    display:block;
+    width:300px;
+    outline:0;
+    margin:0;
+    padding:0;
+}
+
+@media only screen and (max-width : 992px)
+{
+    .sidenav {
+        margin-top: 0;
+        width: 300px;
+    }
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+
+@media only screen and (min-width : 1660px)
+{
+    .sidenav {
+        width: 300px;
+    }
+    main {
+        margin-left: 300px;
+        width: calc(100% - 300px);
+    }
+}
