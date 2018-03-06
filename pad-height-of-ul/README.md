@@ -2,11 +2,11 @@ This tweak doesn't rely on Materialize, it requires jQuery.
 Add after jQuery
 `<script type="text/javascript" src="https://raw.githubusercontent.com/barfittc/materialize-tweaks/master/pad-height-of-ul/pad-height-of-ul.min.js"></script>`
 
-Used to add a padding on any virtical UI/OL list.
+Used to add a padding on any virtical UL/OL list.
 
 
 
-Add one `<li class="pad-height"></li>` to any UI/OL and it will automaticly size the item to pad space between top and bottem list elements
+Add one `<li class="pad-height"></li>` to any UL/OL and it will automaticly size the item to pad space between top and bottem list elements
 
 Example
 ```html
