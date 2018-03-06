@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/barfittc/materialize-tweaks/master/collapsible-stepped-form/jquery.mcss.stepped-form.min.js"></script>
+</head>
+
+<body class="container">
+    <div class="card sticky-action">
+        
+        <ul id="collapsible-new-customer" class="collapsible popout collection with-header" data-collapsible="accordion">
+            <li class="collection-header"><h4>Add a New Customer</h4></li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">contact_phone</i>Customer Infomation</div>
+                <div class="collapsible-body">
+
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="customer[first_name]" type="text" class="validate">
+                            <label for="customer[first_name]">First Name</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">account_box</i>
+                            <input id="customer[last_name]" type="text" class="validate">
+                            <label for="customer[last_name]">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col m2 s4">
+                            <i class="material-icons prefix">phone</i>
+                            <select id="customer_phone_type" name="customer[phone_type]">
+                                <option value="phone" selected>Phone</option>
+                                <option value="smartphone">Cell</option>
+                                <option value="work">Work</option>
+                            </select>
+                            <label for="customer_phone_type">Phone Type</label>
+                        </div>
+                        <div class="input-field col m4 s8">
+                            <input id="customer_phone" name="customer[phone]" type="text">
+                            <label for="customer_phone">Phone</label>
+                        </div>
+                        <div class="input-field col m6 s12">
+                            <i class="material-icons prefix">email</i>
+                            <input id="customer[email]" type="email" class="validate">
+                            <label for="customer[email]">Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">markunread_mailbox</i>
+                            <input id="customer[address]" type="text">
+                            <label for="customer[address]">Address</label>
+                        </div>
+                        <div class="input-field col s6 m4">
+                            <i class="material-icons prefix">location_city</i>
+                            <input id="customer[city]" type="text">
+                            <label for="customer[city]">City</label>
+                        </div>
+                        <div class="input-field col s6 m2">
+                            <input id="customer_postal_code" name="customer[postal_code]" type="text">
+                            <label for="customer_postal_code">Postal Code</label>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">place</i>Vehicle of Interest</div>
+                <div class="collapsible-body">
+                    
+
+                    <div class="row">
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input id="customer[first_name]" type="text" class="validate">
+                            <label for="customer[first_name]">First Name</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            <i class="material-icons prefix">account_box</i>
+                            <input id="customer[last_name]" type="text" class="validate">
+                            <label for="customer[last_name]">Last Name</label>
+                        </div>
+                    </div>
+
+
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Fourth</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">whatshot</i>Fith</div>
+                <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            </li>
+        </ul>
+
+        <script>
+            $(function () {
+                'use strict';
+                
+                // indexes on validate, and setup are 0 based 0-4 for 5 steps on the form.
+                // setup, and validate steps are optional.
+                // all functions are optionally async.
+                // setup does not return anything.
+
+                var theForm = $('#collapsible-new-customer').nextForm({
+                    prev: $("#app-form-btn-prev").parent(),
+                    next: $("#app-form-btn-next").parent(),
+                    submit: $("#app-form-btn-ok").parent(),
+                    onSubmit: async function () {
+                        // onSubmit is optional.
+                        // it allows you to add submit code after validation
+                    },
+                    validate: {
+                        0: async function () {
+                            // you can return nothing, true, or false.
+                            // false (or any object not boolean) will fail validation
+                            // no return or true will pass. async or not.
+                            // async is so you can check server for information. ie: validating an email
+                        },
+                        1: function () {
+                        },
+                        3: async function () {
+                            return true;
+                        },
+                        4: function () {
+                            return false;
+                        }
+                    },
+                    setup: {
+                        0: function () {
+
+                            theForm.nextForm("next");
+
+                            $('#customer_phone_type').material_select();
+
+
+
+                        },
+                        
+                        1: async function () {
+
+                        }
+                    }
+                });
+
+            });
+
+        </script>
+
+        <div class="card-action" style="min-height:70px">
+            <div class="right">
+                <input id="app-form-btn-cancel" type="reset" value="Cancel" class="modal-action modal-close waves-effect waves-red btn-flat btn" />&ensp;
+                <input id="app-form-btn-prev" type="button" value="Previous" class="disabled modal-action modal-next waves-effect waves-green btn btn" />&ensp;
+                <input id="app-form-btn-next" type="button" value="Next" class="disabled modal-action modal-next waves-effect waves-green btn btn" />&ensp;
+                <input id="app-form-btn-ok" type="submit" value="Add" class="modal-action modal-close waves-effect waves-green btn btn" />&ensp;
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+</body>
+</html>
