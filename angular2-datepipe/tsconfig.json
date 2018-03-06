@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": false
+  },
+  "files": [
+      "DateFormatter.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "jspm_packages"
+  ]
+}

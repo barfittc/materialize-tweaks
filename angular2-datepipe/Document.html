@@ -1,0 +1,18 @@
+
+<!doctype html>
+<html>
+	<head>
+	</head>
+	<body>
+		<script src="DateFormatter.min.js"></script>
+		<script>
+			(function() {
+				var date = Date.now();
+				var formatter = new DateFormatter();
+				console.log(date, formatter, formatter.format(date, 'dd/MM/yyyy'));
+			})();
+		</script>
+
+	</body>
+
+</html>
