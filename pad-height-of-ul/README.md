@@ -1,6 +1,6 @@
 This tweak doesn't rely on Materialize, it requires jQuery.
 Add after jQuery
-`<script type="text/javascript" src="https://raw.github.com/barfittc/materialize-tweaks/master/pad-height-of-ul/pad-height-of-ul.min.js"></script>`
+`<script type="text/javascript" src="https://raw.githubusercontent.com/barfittc/materialize-tweaks/master/pad-height-of-ul/pad-height-of-ul.min.js"></script>`
 
 Used to add a padding on any virtical UI/OL list.
 
