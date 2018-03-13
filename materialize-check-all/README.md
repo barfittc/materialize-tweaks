@@ -1,7 +1,7 @@
 This tweak requires; Materialize, jQuery
 
 Add after jQuery
-`<script type="text/javascript" src="https://barfittc.github.io/materialize-tweaks/materialize-check-all/materialize-switch-all.min"></script>`
+`<script type="text/javascript" src="https://barfittc.github.io/materialize-tweaks/materialize-check-all/materialize-switch-all.min.js"></script>`
 
 
 
