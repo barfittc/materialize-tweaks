@@ -5,7 +5,7 @@ It's the same interface as DatePipe, just named DateFormatter
 you can include the locale if needed
 
 ```html
-	<script src="https://raw.githubusercontent.com/barfittc/materialize-tweaks/master/angular2-datepipe/DateFormatter.min.js"></script>
+	<script src="https://barfittc.github.io/materialize-tweaks/angular2-datepipe/DateFormatter.min.js"></script>
 	<script>
 		(function() {					
 			var date = Date.now();
