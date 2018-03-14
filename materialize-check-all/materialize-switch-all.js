@@ -1,80 +1,80 @@
+$(document).ready(function()
+{
+    var block = false;
+    function onCheckChanged (checkbox, elements) {
 
-    
-  $(document).ready(function(){
+        if (block)
+            return;
+        block = true;
 
-    function onCheckChanged (event) {
-        var checkbox = $(this).siblings("input").first();
-        
-        if (checkbox.data("is-all"))
+        if (checkbox.hasAttribute("data-check-all"))
         {
-            if (checkbox.is(':checked'))
+            if ($(checkbox).is(':checked'))
             {
-                event.data.each(function(index, element) {
-                    $(element).removeAttr('checked');
+                elements.forEach(function(element)
+                {
+                    if (element === checkbox)
+                        return;
+
+                    setState(element, false);
                 });
             }
             else
             {
-                event.data.each(function(index, element) {
-                    $(element).attr('checked', true);
+                elements.forEach(function(element)
+                {
+                    if (element === checkbox)
+                        return;
+
+                    setState(element, true);
                 });
             }
         }
         else
         {
-
-            if (checkbox.is(':checked'))
+            if ($(checkbox).is(':checked'))
             {
-                checkbox.removeAttr('checked');
-                event.data.each(function(index, element) {
-                    var that = $(element);
-                    if (that.data("is-all")){
-                        that.removeAttr('checked');
+                elements.forEach(function(element)
+                {
+                    if (element.hasAttribute("data-check-all"))
+                    {
+                        setState(element, false);
                     }
                 });
             }
             else
             {
-                checkbox.attr('checked', true);
-                var allchecked = true;
-                event.data.each(function(index, element) {
-                    var that = $(element);
-
-                    if (!that.data("is-all") && !that.is(':checked'))
-                    {
-                        allchecked = false;
-                    }
-                });
-
-                if (allchecked)
-                {
-                    event.data.each(function(index, element) {
-                        var that = $(element);
-                        if (that.data("is-all")) {
-                            that.attr('checked', true);
-                        }
-                    });
-                }
+                checkIfAll(elements, checkbox);
             }
         }
-
-
-        //console.log (!checkbox.is(':checked'), event.data, checkbox, checkbox.data("is-all"));
-        event.preventDefault();
-        event.stopPropagation();
+        block = false;
     }
-    $(`[data-check-all]`).each(function() {
 
-        var allSwitch = $(this);
-        var switchName = allSwitch.attr("data-check-all");
-        var switches = $(`#${switchName}`).find("[type='checkbox']");
+    function setState(element, state)
+    {
+        var checkbox = $(element);
+        var run = false;
+
+        if (checkbox.is(':checked') && !state)
+        {
+            checkbox.siblings("span").click();
+        }
+        else if (!checkbox.is(':checked') && state)
+        {
+            checkbox.siblings("span").click();
+        }
+    }
+
+    function checkIfAll(elements, ignore)
+    {
         var allchecked = true;
+        elements.forEach(function(element) {
+            
+            if (ignore === element)
+                return;
 
-        switches.each(function(index, element) {
-            var that = $(element);
-            that.data("is-all", $(element).attr("data-check-all") === switchName);
-
-            if (!that.data("is-all") && !that.is(':checked'))
+            if (!element.hasAttribute("data-check-all") 
+            && !$(element).is(':checked'))
             {
                 allchecked = false;
             }
@@ -82,14 +82,43 @@
 
         if (allchecked)
         {
-            switches.each(function(index, element) {
-                var that = $(element);
-                if (that.data("is-all")) {
-                    that.attr('checked', true);
+            elements.forEach(function(element) {
+                if (element.hasAttribute("data-check-all")) {
+                    setState(element, true);
                 }
             });
         }
+    }
+    $(`[data-check-all]`).each(function() {
 
-        switches.siblings("span").on("click", switches, onCheckChanged);
+        var switches = [];
+
+        $(`#${$(this).attr("data-check-all")}`)
+            .find("[type='checkbox']")
+            .each(function(index, element)
+        {
+            switches.push($(element)[0]);
+        });
+
+        checkIfAll(switches);
+
+        $(`#${$(this).attr("data-check-all")}`)
+            .find("[type='checkbox']")
+            .each(function(index, element)
+        {
+            $(element).siblings("span")[0].addEventListener("click", function(e)
+            {
+                onCheckChanged(element, switches);
+            });
+
+            $(element)[0].addEventListener("keyup", function(e)
+            {
+                if (e.keyCode == 32)
+                {
+                    onCheckChanged(this, switches);
+                }
+
+            });
+        });
     });
-  });
+});
