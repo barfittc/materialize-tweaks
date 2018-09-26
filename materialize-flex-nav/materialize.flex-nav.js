@@ -8,6 +8,7 @@ $(document).ready(function()
 		var $globalNav = this;
 		var $window = $(window);
 		var logoPaddingOffset = 2 * parseInt(NavSettings.logo.padding, 10);
+		var height = parseInt(NavSettings.height.large, 10);
   
 		$('head').prepend("<style>"+getTemplate(
 		  "" + NavSettings.height.large,
@@ -17,17 +18,7 @@ $(document).ready(function()
 		  "" + NavSettings.logo.padding
 		  )+"</style>");
 		  // override the "padding at the top caused be the navbar"
-		  $('head').append(`<style>
-		   .navbar-fixed {
-	height: 0px;
-  }
-  
-  @media only screen and (min-width: 601px)
-  {
-	.navbar-fixed {
-	  height: 0px;
-	}
-  }</style>`);
+		  $('head').append("<style>.navbar-fixed{height:0px;}@media only screen and (min-width: 601px){.navbar-fixed{height:0px;}}</style>");
 
 
  
@@ -49,11 +40,11 @@ $(document).ready(function()
 		$(window).scroll(function (){
 		  scrollTop = $window.scrollTop();
 		  
-		  if (scrollTop >= 150 && $globalNav.hasClass('not-scrolled-nav')) {
+		  if (scrollTop >= height && $globalNav.hasClass('not-scrolled-nav')) {
 			$globalNav.addClass('scrolled-nav');
 			$globalNav.removeClass('not-scrolled-nav');
   
-		  } else if (scrollTop < 150 && $globalNav.hasClass('scrolled-nav')) {
+		  } else if (scrollTop < height && $globalNav.hasClass('scrolled-nav')) {
 			$globalNav.removeClass('scrolled-nav');
 			$globalNav.addClass('not-scrolled-nav');
   
